@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-sm-8 mx-auto">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header">
                 アカウント作成
             </div>
