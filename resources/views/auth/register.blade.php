@@ -27,10 +27,10 @@
                         
                         <div class="form-group">
                             {!! Form::label('password_confirmation', 'パスワード（確認）') !!}
-                            {!! Form::password('password', ['class' => 'form-control']) !!}
+                            {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                         </div>
                         
-                        {!! Form::submit('登録する', ['class' => 'btn btn-primary btn-block']) !!}
+                        {!! Form::submit('登録する', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
