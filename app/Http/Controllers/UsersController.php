@@ -11,9 +11,13 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $obiposts = $user->obiposts()->paginate(10);
         
-        return view('users.show', [
+        $data = [
             'user' => $user,
-        ]);
+            'obiposts' => $obiposts,
+        ];
+        
+        return view('users.show', $data);
     }
 }

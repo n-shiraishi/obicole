@@ -10,7 +10,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if(Auth::check())
-                    <li class="nav-item"><a href="#" class="nav-link">記事を投稿</a></li>
+                    <li class="nav-item">{!! link_to_route('obiposts.create', '記事を投稿', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-right">
