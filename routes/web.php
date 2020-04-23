@@ -26,6 +26,16 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 // ユーザ機能
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', 'UsersController', ['only' => ['show']]);
+    
+    Route::group(['prefix' => 'users/{id}'], function() {
+        Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
+    });
+    
+    Route::group(['prefix' => 'obiposts/{id}'], function() {
+        Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
+        Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
+    });
+    
     Route::resource('obiposts', 'ObipostsController');
 });
 

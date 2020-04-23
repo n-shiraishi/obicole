@@ -10,6 +10,11 @@
                         <h4 class="card-title">{!! link_to_route('obiposts.show', $obipost->title, ['id' => $obipost->id]) !!}</h4>
                         <p class="card-text">{{ $obipost->content }}</p>
                     </div>
+                    <div class="card-body">
+                        <p class="text-right">
+                            <span class="badge  badge-pill badge-danger">♡ {{ $obipost->count_favorite_users }}</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </li>

@@ -10,4 +10,20 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
+    public function counts($user) {
+        $count_obiposts = $user->obiposts()->count();
+        
+        return [
+            'count_obiposts' => $count_obiposts,
+        ];
+    }
+    
+    public function favcounts($obipost) {
+        $count_favorite_users = $obipost->favorite_users()->count();
+        
+        return [
+            'count_favorite_users'  => $count_favorite_users,
+        ];
+    }
 }

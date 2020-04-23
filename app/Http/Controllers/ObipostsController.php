@@ -77,9 +77,13 @@ class ObipostsController extends Controller
     {
         $obipost = Obipost::find($id);
         
-        return view('obiposts.show', [
+        $data = [
             'obipost' => $obipost,
-        ]);
+        ];
+        
+        $data += $this->favcounts($obipost);
+        
+        return view('obiposts.show', $data);
     }
 
     /**
