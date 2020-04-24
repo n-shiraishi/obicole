@@ -40,4 +40,21 @@ class UsersController extends Controller
         return view('users.favorites', $data);
 
     }
+    
+        public function wishes($id)
+    {
+        $user = User::find($id);
+        $wishes = $user->wishes()->paginate(20);
+        
+        $data = [
+            'user' => $user,
+            'obiposts' => $wishes,
+        ];
+        
+        $data += $this->counts($user);
+
+        return view('users.wishes', $data);
+
+    }
+
 }

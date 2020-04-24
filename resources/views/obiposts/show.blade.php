@@ -29,6 +29,7 @@
             </div>
             <div class="mr-3">
                 <p class="text-right">
+                    <span class="badge badge-pill badge-warning mr-2">☆ {{ $count_wishing_users }}</span>
                     <span class="badge badge-pill badge-danger">♡ {{ $count_favorite_users }}</span>
                 </p>
             </div>
@@ -38,7 +39,9 @@
             </div>
             
             <div class="d-flex">
-                <div class="d-inline-flex p-2 btn btn-outline-warning btn-sm">気になる</div>
+                <div class="d-inline-flex p-2">
+                    @include('wishes.wishes_button')
+                </div>
                 <div class="d-inline-flex p-2">
                     @include('favorites.favorite_button')
                 </div>

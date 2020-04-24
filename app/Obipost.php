@@ -17,4 +17,9 @@ class Obipost extends Model
     {
       return $this->belongsToMany(User::class, 'favorites', 'obipost_id', 'user_id')->withTimestamps();  
     }
+    
+    public function wishing_users()
+    {
+        return $this->belongsToMany(User::class, 'wishes', 'obipost_id', 'user_id')->withTimestamps();
+    }
 }

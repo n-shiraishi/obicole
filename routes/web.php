@@ -29,11 +29,14 @@ Route::group(['middleware' => ['auth']], function() {
     
     Route::group(['prefix' => 'users/{id}'], function() {
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
+        Route::get('wishes', 'UsersController@wishes')->name('users.wishes');
     });
     
     Route::group(['prefix' => 'obiposts/{id}'], function() {
         Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
         Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
+        Route::post('wish', 'WishesController@store')->name('wishes.wish');
+        Route::delete('unwished', 'WishesController@destroy')->name('wishes.unwished');
     });
     
     Route::resource('obiposts', 'ObipostsController');

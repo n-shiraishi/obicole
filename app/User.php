@@ -65,4 +65,38 @@ class User extends Authenticatable
     {
         return $this->favorites()->where('obipost_id', $obipostId)->exists();
     }
+    
+    public function wishes()
+    {
+        return $this->belongsToMany(Obipost::class, 'wishes', 'user_id', 'obipost_id')->withTimestamps();
+    }
+    
+    public function wish($obipostId)
+    {
+        $exist = $this->is_wishing($obipostId);
+        
+        if($exist) {
+            return false;
+        } else {
+            $this->wishes()->attach($obipostId);
+            return true;
+        }
+    }
+    
+    public function unwished($obipostId)
+    {
+        $exist = $this->is_wishing($obipostId);
+        
+        if($exist) {
+            $this->wishes()->detach($obipostId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function is_wishing($obipostId)
+    {
+        return $this->wishes()->where('obipost_id', $obipostId)->exists();
+    }
 }
