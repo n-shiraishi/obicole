@@ -12,7 +12,7 @@
                     {!! Form::textarea('content', null,  ['class' => 'form-control', 'placeholder' => '感想など', 'rows' => '12']) !!}
                 </div>
                 <div>
-                    {!! Form::label('image_path', '写真を選択') !!}
+                    {!! Form::label('obipost_image_path', '写真を選択') !!}
                     {!! Form::file('myfile', null) !!}
                 </div>
         </div>

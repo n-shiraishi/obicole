@@ -2,8 +2,8 @@
     <div class="card-header">
         {{ $user->name }}
     </div>
-    <div class="card-body">
-        <img class="rounded img-fluid" src="{{ $user->icon_image_path }}" alt="ユーザアイコン画像">
+    <div class="card-body text-center">
+        <img class="rounded img-fluid" src="{{ $user->icon_image_path }}" width="300" heigh="300" alt="ユーザアイコン画像">
     </div>
 </div>
     @if(Auth::id() == $user->id)

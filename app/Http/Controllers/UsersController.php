@@ -81,9 +81,12 @@ class UsersController extends Controller
             'name' => 'required|max:191',
         ]);
         
+        
         if($user->icon_image_path != NULL) {
+            $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+            $previous = str_replace("$domain", "", $user->icon_image_path);
             $disk = Storage::disk('s3');
-            $disk->delete($user->icon_image_path);
+            $disk->delete($previous);
         }
         
         $image = $request->file('myfile');

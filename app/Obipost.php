@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Obipost extends Model
 {
-    protected $fillable = ['user_id', 'content', 'title', 'book_title', 'book_author'];
+    protected $fillable = ['user_id', 'content', 'title', 'book_title', 'book_author', 'obipost_image_path'];
     
     public function user()
     {

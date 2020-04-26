@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="jumbotron jumbotron-fluid container-fluid">
-        <h1 class="text-center">{{ $obipost->title }}</h1>
+    <div class="jumbotron jumbotron-fluid">
+            <h1 class="text-center">{{ $obipost->title }}</h1>
     </div>
     
     <div class="row">
         <div class="col-sm-4">
-            <img src="#" class="mx-auto d-block" alt="アップロードされた画像">
+            <img class="mx-auto d-block" src="{{ $obipost->obipost_image_path }}" width="100%" height="auto" alt="アップロードされた画像">
             <div class="d-inline-flex">
                 <p class="text-break text-muted">
                     <a href="#" class="text-reset">＃{{ $obipost->book_title }}</a>

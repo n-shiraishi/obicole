@@ -1,3 +1,10 @@
 body {
     background-color: #f9fffc;
 }
+
+.icon_image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+}

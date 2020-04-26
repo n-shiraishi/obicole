@@ -3,7 +3,7 @@
         <li class="card mb-3">
             <div class="row no-gutters">
                 <div class="col-sm-4">
-                    <img class="img-thumbnail float-left" src="#" alt="アップロードした画像">
+                    <img class="img-thumbnail float-left" src="{{ $obipost->obipost_image_path }}" width="100%" height="auto" alt="アップロードした画像">
                 </div>
                 <div class="col-sm-8">
                     <div class="card-body">

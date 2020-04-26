@@ -3,13 +3,17 @@
 @section('content')
     <div class="row">
         <div class="col-sm-8">
-            {!! Form::open( ['route' => ['obiposts.store']]) !!}
+            {!! Form::open(['route' => ['obiposts.store'], 'files' => true]) !!}
             
                 <div class="form-group">
                     {!! Form::text('title', null,  ['class' => 'form-control', 'placeholder' => '煽り文をPick Up']) !!}
                 </div>
                 <div class="form-group mb-5">
                     {!! Form::textarea('content', null,  ['class' => 'form-control', 'placeholder' => '感想など', 'rows' => '12']) !!}
+                </div>
+                <div>
+                    {!! Form::label('obipost_image_path', '写真を選択') !!}
+                    {!! Form::file('myfile', null) !!}
                 </div>
         </div>
         

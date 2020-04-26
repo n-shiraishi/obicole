@@ -8,6 +8,8 @@ use App\Obipost;
 
 use App\User;
 
+use Storage;
+
 class ObipostsController extends Controller
 {
     /**
@@ -59,11 +61,22 @@ class ObipostsController extends Controller
             'book_author' => 'max:191',
         ]);
         
+        // dd($request);
+        $image = $request->file('myfile');
+        // dd($image);
+        $path = Storage::disk('s3')->putFile('obipost', $image, 'public');
+        
+        // dd($path);
+        $obipost_image_path = Storage::disk('s3')->url($path);
+        
+        // dd($obipost_image_path);
+
         $request->user()->obiposts()->create([
             'title' => $request->title,
             'content' => $request->content,
             'book_title' => $request->book_title,
             'book_author' => $request->book_author,
+            'obipost_image_path' => $obipost_image_path,
         ]);
         
         return redirect('/');
@@ -127,12 +140,22 @@ class ObipostsController extends Controller
             'book_author' => 'max:191',
         ]);
         
+        if($obipost->obipost_image_path != NULL) {
+            $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+            $previous = str_replace("$domain", "", $obipost->obipost_image_path);
+            $disk = Storage::disk('s3');
+            $disk->delete($previous);
+        }
+        
+        $image = $request->file('myfile');
+        $path = Storage::disk('s3')->putFile('obipost', $image, 'public');
+        
         if(\Auth::id() === $obipost->user_id) {
             $obipost->title = $request->title;
             $obipost->content = $request->content;
             $obipost->book_title = $request->book_title;
             $obipost->book_author = $request->book_author;
-            $obipost->image_path = $request->image_path;
+            $obipost->obipost_image_path = Storage::disk('s3')->url($path);
             $obipost->save();
     
             return redirect('/');
