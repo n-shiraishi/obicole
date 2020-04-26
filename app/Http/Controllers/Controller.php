@@ -22,7 +22,7 @@ class Controller extends BaseController
     public function favcounts($obipost) {
         $count_favorite_users = $obipost->favorite_users()->count();
         $count_wishing_users = $obipost->wishing_users()->count();
-        
+
         return [
             'count_favorite_users'  => $count_favorite_users,
             'count_wishing_users' => $count_wishing_users,

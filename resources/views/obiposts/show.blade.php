@@ -21,7 +21,7 @@
         <div class="col-sm-8">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5><a href="#">ユーザ名</a></h5>
+                    <h5>{!! link_to_route('users.show', $obipost->user->name, ['id' => $obipost->user->id]) !!}</h5>
                 </div>
                 <div class="mr-3">
                     <p class="text-right">| {{ $obipost->created_at }}</p>

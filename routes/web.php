@@ -25,8 +25,8 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 // ユーザ機能
 Route::group(['middleware' => ['auth']], function() {
-    Route::resource('users', 'UsersController', ['only' => ['show']]);
-    
+    Route::resource('users', 'UsersController');
+
     Route::group(['prefix' => 'users/{id}'], function() {
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
         Route::get('wishes', 'UsersController@wishes')->name('users.wishes');

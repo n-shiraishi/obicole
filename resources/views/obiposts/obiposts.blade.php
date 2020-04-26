@@ -12,7 +12,8 @@
                     </div>
                     <div class="card-body">
                         <p class="text-right">
-                            <span class="badge  badge-pill badge-danger">♡ {{ $obipost->count_favorite_users }}</span>
+                            <span class="badge  badge-pill badge-warning mr-2">☆ {{ $obipost->wishing_users()->count() }}</span>
+                            <span class="badge  badge-pill badge-danger">♡ {{ $obipost->favorite_users()->count() }}</span>
                         </p>
                     </div>
                 </div>

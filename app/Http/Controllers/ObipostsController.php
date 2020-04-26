@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Obipost;
 
+use App\User;
+
 class ObipostsController extends Controller
 {
     /**
@@ -19,12 +21,12 @@ class ObipostsController extends Controller
         
         $user = \Auth::user();
         $obiposts = Obipost::all();
-        
+
         $data = [
             'user' => $user,
             'obiposts' => $obiposts,
         ];
-            
+
         return view('obiposts.index', $data);
     }
 
@@ -76,9 +78,11 @@ class ObipostsController extends Controller
     public function show($id)
     {
         $obipost = Obipost::find($id);
+        $user = $obipost->user_id;
         
         $data = [
             'obipost' => $obipost,
+            'user' => $user,
         ];
         
         $data += $this->favcounts($obipost);
@@ -128,6 +132,7 @@ class ObipostsController extends Controller
             $obipost->content = $request->content;
             $obipost->book_title = $request->book_title;
             $obipost->book_author = $request->book_author;
+            $obipost->image_path = $request->image_path;
             $obipost->save();
     
             return redirect('/');

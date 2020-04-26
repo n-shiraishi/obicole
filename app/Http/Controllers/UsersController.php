@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 use App\User;
 
 use App\Obipost;
+
+use Storage;
 
 class UsersController extends Controller
 {
@@ -55,6 +58,48 @@ class UsersController extends Controller
 
         return view('users.wishes', $data);
 
+    }
+    
+    public function edit($id)
+    {
+        $user = User::find($id);
+        
+        if(\Auth::id() === $user->id) {
+            return view('users.edit', [
+                'user' => $user,
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }
+    
+        public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+        
+        $this->validate($request,[
+            'name' => 'required|max:191',
+        ]);
+        
+        if($user->icon_image_path != NULL) {
+            $disk = Storage::disk('s3');
+            $disk->delete($user->icon_image_path);
+        }
+        
+        $image = $request->file('myfile');
+        // $extension = $request->file('myfile')->getClientOriginalExtension();
+        // $resize_img = Image::make($image)->resize(300,300);
+        $path = Storage::disk('s3')->putFile('icon', $image, 'public');
+        
+        if(\Auth::id() === $user->id) {
+            $user->name = $request->name;
+            $user->icon_image_path = Storage::disk('s3')->url($path);
+            $user->save();
+    
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
     }
 
 }
