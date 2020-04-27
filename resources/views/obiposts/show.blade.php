@@ -19,18 +19,21 @@
         </div>
         
         <div class="col-sm-8">
-            <div class="d-flex justify-content-between">
-                <div>
+            <div class="d-flex">
+                <div class="d-inline-flex p-2">
+                    <img class="icon_image" src="{{ $obipost->user->icon_image_path }}">
+                </div>
+                <div class="d-inline-flex p-2">
                     <h5>{!! link_to_route('users.show', $obipost->user->name, ['id' => $obipost->user->id]) !!}</h5>
                 </div>
-                <div class="mr-3">
+                <div class="d-inline-flex ml-auto mr-3">
                     <p class="text-right">| {{ $obipost->created_at }}</p>
                 </div>
             </div>
             <div class="mr-3">
                 <p class="text-right">
-                    <span class="badge badge-pill badge-warning mr-2">☆ {{ $count_wishing_users }}</span>
-                    <span class="badge badge-pill badge-danger">♡ {{ $count_favorite_users }}</span>
+                    <span class="badge badge-pill badge-warning mr-2">☆ {!! link_to_route('obiposts.wishing_users', $count_wishing_users, ['id' => $obipost->id]) !!}</span>
+                    <span class="badge badge-pill badge-danger">♡ {!! link_to_route('obiposts.favorite_users', $count_favorite_users, ['id' => $obipost->id]) !!}</span>
                 </p>
             </div>
             

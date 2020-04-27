@@ -182,4 +182,36 @@ class ObipostsController extends Controller
             return redirect('/');
         }
     }
+    
+        public function favorite_users($id)
+    {
+        $obipost = Obipost::find($id);
+        $favorite_users = $obipost->favorite_users()->paginate(20);
+        
+        $data = [
+            'obipost' => $obipost,
+            'users' => $favorite_users,
+        ];
+        
+        $data += $this->favcounts($obipost);
+
+        return view('obiposts.favorite_users', $data);
+
+    }
+    
+        public function wishing_users($id)
+    {
+        $obipost = Obipost::find($id);
+        $wishing_users = $obipost->wishing_users()->paginate(20);
+        
+        $data = [
+            'obipost' => $obipost,
+            'users' => $wishing_users,
+        ];
+        
+        $data += $this->favcounts($obipost);
+
+        return view('obiposts.wishing_users', $data);
+
+    }
 }

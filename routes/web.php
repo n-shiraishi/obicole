@@ -37,6 +37,11 @@ Route::group(['middleware' => ['auth']], function() {
         Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
         Route::post('wish', 'WishesController@store')->name('wishes.wish');
         Route::delete('unwished', 'WishesController@destroy')->name('wishes.unwished');
+        Route::get('favorite_users', 'ObipostsController@favorite_users')->name('obiposts.favorite_users');
+        Route::get('wishing_users', 'ObipostsController@wishing_users')->name('obiposts.wishing_users');
+        Route::get('book_title', 'ObipostsController@book_title')->name('obiposts.book_title');
+        Route::get('book_author', 'ObipostsController@book_author')->name('obiposts.book_author');
+        
     });
     
     Route::resource('obiposts', 'ObipostsController');
