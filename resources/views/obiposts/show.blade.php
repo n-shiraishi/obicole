@@ -10,10 +10,10 @@
             <img class="mx-auto d-block" src="{{ $obipost->obipost_image_path }}" width="100%" height="auto" alt="アップロードされた画像">
             <div class="d-inline-flex">
                 <p class="text-break text-muted">
-                    <a href="#" class="text-reset">＃{{ $obipost->book_title }}</a>
+                    {!! link_to_route('obiposts.book_title', '#' . $obipost->book_title, ['book_title' => $obipost->book_title]) !!}
                 </p>
                 <p class="text-break text-muted">
-                    <a href="#" class="text-reset">＃{{ $obipost->book_author }}</a>
+                    {!! link_to_route('obiposts.book_author', '#' . $obipost->book_author, ['book_author' => $obipost->book_author]) !!}
                 </p>
             </div>
         </div>

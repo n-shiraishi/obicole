@@ -196,7 +196,6 @@ class ObipostsController extends Controller
         $data += $this->favcounts($obipost);
 
         return view('obiposts.favorite_users', $data);
-
     }
     
         public function wishing_users($id)
@@ -212,6 +211,30 @@ class ObipostsController extends Controller
         $data += $this->favcounts($obipost);
 
         return view('obiposts.wishing_users', $data);
-
     }
+    
+    public function book_title($book_title)
+    {
+        $obiposts = Obipost::where('book_title', $book_title)->get();
+
+        $data = [
+            'obiposts' => $obiposts,
+            'book_title' => $book_title,
+        ];
+        
+        return view('obiposts.book_title', $data);
+    }
+    
+        public function book_author($book_author)
+    {
+        $obiposts = Obipost::where('book_author', $book_author)->get();
+
+        $data = [
+            'obiposts' => $obiposts,
+            'book_author' => $book_author,
+        ];
+        
+        return view('obiposts.book_author', $data);
+    }
+
 }
