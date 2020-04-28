@@ -236,4 +236,26 @@ class ObipostsController extends Controller
         
         return view('obiposts.book_author', $data);
     }
+    
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        
+        if(!empty($keyword))
+        {
+            $obiposts =  Obipost::where('book_title','like', '%' . $keyword . '%')
+                        ->orWhere('book_author','like', '%' . $keyword . '%')
+                        ->orWhere('title','like', '%' . $keyword . '%')
+                        ->orWhere('content','like', '%' . $keyword . '%')
+                        ->get();
+                        
+            return view('obiposts.search',[
+                'obiposts' => $obiposts,
+                'keyword' => $keyword,
+            ]);
+                
+        } else {
+            return back();
+        }
+    }
 }

@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', 'UsersController');
     Route::get('favorites_rank', 'TopController@favorites_rank')->name('top.favorites_rank');
     Route::get('wishes_rank', 'TopController@wishes_rank')->name('top.swishes_rank');
+    Route::get('search','ObipostsController@search')->name('obiposts.search');
 
     Route::group(['prefix' => 'users/{id}'], function() {
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');

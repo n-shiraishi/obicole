@@ -15,6 +15,9 @@
                             <span class="badge  badge-pill badge-warning mr-2"><i class="fas fa-bookmark"></i> {{ $obipost->wishing_users()->count() }}</span>
                             <span class="badge  badge-pill badge-danger"><i class="fas fa-heart"></i> {{ $obipost->favorite_users()->count() }}</span>
                         </p>
+                        <p class="text-muted text-right">
+                            ＃ {!! link_to_route('obiposts.book_title', $obipost->book_title, ['book_title' => $obipost->book_title]) !!}  ＃ {!! link_to_route('obiposts.book_author', $obipost->book_author, ['book_author' => $obipost->book_author]) !!}
+                        </p>
                     </div>
                 </div>
             </div>
