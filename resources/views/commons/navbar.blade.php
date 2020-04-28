@@ -10,7 +10,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if(Auth::check())
-                    <li class="nav-item">{!! link_to_route('obiposts.index', 'ランキング', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('top.favorites_rank', 'ランキング', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('users.index', 'ユーザー一覧', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('obiposts.create', '記事を投稿', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nev-item"><img class="icon_image" src="{{ Auth::user()->icon_image_path }}"</li>

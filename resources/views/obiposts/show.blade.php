@@ -32,8 +32,8 @@
             </div>
             <div class="mr-3">
                 <p class="text-right">
-                    <span class="badge badge-pill badge-warning mr-2">☆ {!! link_to_route('obiposts.wishing_users', $count_wishing_users, ['id' => $obipost->id]) !!}</span>
-                    <span class="badge badge-pill badge-danger">♡ {!! link_to_route('obiposts.favorite_users', $count_favorite_users, ['id' => $obipost->id]) !!}</span>
+                    <span class="badge badge-pill badge-warning mr-2"><i class="fas fa-bookmark"></i> {!! link_to_route('obiposts.wishing_users', $count_wishing_users, ['id' => $obipost->id]) !!}</span>
+                    <span class="badge badge-pill badge-danger"><i class="fas fa-heart"></i> {!! link_to_route('obiposts.favorite_users', $count_favorite_users, ['id' => $obipost->id]) !!}</span>
                 </p>
             </div>
             

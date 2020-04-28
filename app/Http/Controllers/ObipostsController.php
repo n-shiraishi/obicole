@@ -236,5 +236,4 @@ class ObipostsController extends Controller
         
         return view('obiposts.book_author', $data);
     }
-
 }

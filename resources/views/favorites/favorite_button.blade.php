@@ -1,11 +1,11 @@
 @if(Auth::id() != $obipost->user->id)
     @if(Auth::user()->favorite_obiposts($obipost->id))
         {!! Form::open(['route' => ['favorites.unfavorite', $obipost->id], 'method' => 'delete']) !!}
-            {!! Form::submit('♡', ['class' => "btn btn-danger"]) !!}
+            {!! Form::button('<i class="fas fa-heart"></i>', ['class' => "btn btn-danger", 'type' => 'submit']) !!}
         {!! Form::close() !!}
     @else
         {!! Form::open(['route' => ['favorites.favorite', $obipost->id]]) !!}
-            {!! Form::submit('いいね', ['class' => "btn btn-outline-danger"]) !!}
+            {!! Form::button('<i class="far fa-heart"></i>　いいね', ['class' => "btn btn-outline-danger", 'type' => 'submit']) !!}
         {!! Form::close() !!}
     @endif
 @endif
