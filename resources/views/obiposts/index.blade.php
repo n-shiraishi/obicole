@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@include('commons.search_form')
-
-    <h5><i class="fas fa-book"></i> すべての記事</h5>
-
-@include('obiposts.obiposts')
-
+    <div class="container">
+        @include('commons.search_form')
+            <h5 class="pb-0 mb-4"><i class="fas fa-book"></i> すべての記事</h5>
+        @include('obiposts.obiposts')
+    </div>
 @endsection

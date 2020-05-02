@@ -22,7 +22,7 @@ class ObipostsController extends Controller
         $data = [];
         
         $user = \Auth::user();
-        $obiposts = Obipost::all();
+        $obiposts = Obipost::orderBy('created_at','desc')->paginate(15);
 
         $data = [
             'user' => $user,
@@ -131,6 +131,9 @@ class ObipostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        ini_set('post_max_size', '20M');
+        ini_set('upload_max_filesize', '20M');
+        
         $obipost = Obipost::find($id);
         
         $this->validate($request,[
@@ -140,24 +143,30 @@ class ObipostsController extends Controller
             'book_author' => 'max:191',
         ]);
         
-        if($obipost->obipost_image_path != NULL) {
-            $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
-            $previous = str_replace("$domain", "", $obipost->obipost_image_path);
-            $disk = Storage::disk('s3');
-            $disk->delete($previous);
-        }
-        
-        $image = $request->file('myfile');
-        $path = Storage::disk('s3')->putFile('obipost', $image, 'public');
-        
         if(\Auth::id() === $obipost->user_id) {
+        
+            if($obipost->obipost_image_path != NULL) {
+                $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+                $previous = str_replace("$domain", "", $obipost->obipost_image_path);
+                $disk = Storage::disk('s3');
+                $disk->delete($previous);
+            }
+            
+            $image = $request->file('myfile');
+            // dd($image);
+            if ($image !== '') {
+                $path = Storage::disk('s3')->putFile('obipost', $image, 'public');
+                $obipost->obipost_image_path = Storage::disk('s3')->url($path);
+            } else {
+                $obipost->obipost_image_path = null;
+            }
+
             $obipost->title = $request->title;
             $obipost->content = $request->content;
             $obipost->book_title = $request->book_title;
             $obipost->book_author = $request->book_author;
-            $obipost->obipost_image_path = Storage::disk('s3')->url($path);
             $obipost->save();
-    
+        
             return redirect('/');
         } else {
             return redirect('/');
@@ -175,8 +184,17 @@ class ObipostsController extends Controller
         $obipost = Obipost::find($id);
         
         if(\Auth::id() === $obipost->user_id) {
+        
+            if($obipost->obipost_image_path !== NULL) 
+            {
+                $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+                $previous = str_replace("$domain", "", $obipost->obipost_image_path);
+                $disk = Storage::disk('s3');
+                $disk->delete($previous);
+            }
+        
             $obipost->delete();
-            
+
             return redirect('/');
         } else {
             return redirect('/');

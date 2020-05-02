@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <dev class="row">
-        <aside class="col-sm-4">
-            @include('users.card',['user' => $user])
-        </aside>
-        <div class="col-sm-8">
-            @include('users.navtabs', ['user' => $user])
-            @include('obiposts.obiposts', ['obiposts' => $obiposts])
-        </div>
-    </dev>
+    <div class="container mt-4">
+        <dev class="row">
+            <div class="col-sm-4">
+                @include('users.card',['user' => $user])
+            </div>
+            <div class="col-sm-8">
+                @include('users.navtabs', ['user' => $user])
+                @include('obiposts.obiposts', ['obiposts' => $obiposts])
+            </div>
+        </dev>
+    </div>
 @endsection

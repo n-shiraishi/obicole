@@ -111,5 +111,44 @@ class UsersController extends Controller
             return redirect('/');
         }
     }
+    
+        public function destroy($id)
+    {
+        $user = User::find($id);
+        
+        if(\Auth::id() === $user->id) {
+        
+            if($user->icon_image_path !== NULL) 
+            {
+                $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+                $previous = str_replace("$domain", "", $user->icon_image_path);
+                $disk = Storage::disk('s3');
+                $disk->delete($previous);
+            }
+            
+            if(count($user->obiposts) > 0)
+            {
+                $obiposts = $user->obiposts;
+                
+                foreach($obiposts as $obipost)
+                {
+                    if($obipost !== null)
+                    {
+                        $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+                        $previous = str_replace("$domain", "", $obipost->obipost_image_path);
+                        $disk = Storage::disk('s3');
+                        $disk->delete($previous);
+                    }
+                        
+                }
+            }
+        
+            $user->delete();
+
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
+    }
 
 }
