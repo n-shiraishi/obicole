@@ -24,7 +24,11 @@
             <div class="col-sm-8">
                 <div class="d-flex align-items-center">
                     <div class="d-inline-flex p-2">
-                        <img class="icon_image" src="{{ $obipost->user->icon_image_path }}">
+                        @if($obipost->user->icon_image_path === NULL)
+                            <img class="icon_image" src="{{ url('images/iconmonstr-user-6-240 (1).png') }}" alt="ユーザアイコン画像">
+                        @else
+                            <img class="icon_image" src="{{ $obipost->user->icon_image_path }}" alt="ユーザアイコン画像">
+                        @endif
                     </div>
                     <div class="d-inline-flex p-2">
                         <h5 class="user_name">{!! link_to_route('users.show', $obipost->user->name, ['id' => $obipost->user->id]) !!}</h5>

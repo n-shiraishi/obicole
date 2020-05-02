@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-
 use App\User;
-
 use App\Obipost;
-
 use Storage;
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
@@ -88,24 +86,47 @@ class UsersController extends Controller
         $user = User::find($id);
         
         $this->validate($request,[
-            'name' => 'required|max:191',
+            'name' => 'required|max:20',
+            'myfile' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
-        if($user->icon_image_path !== NULL) 
-        {
-            $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
-            $previous = str_replace("$domain", "", $user->icon_image_path);
-            $disk = Storage::disk('s3');
-            $disk->delete($previous);
-        }
-        
-        $image = $request->file('myfile');
-        $path = Storage::disk('s3')->putFile('icon', $image, 'public');
         if(\Auth::id() === $user->id) {
+        
+            if($user->icon_image_path !== NULL) 
+            {
+                $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+                $previous = str_replace("$domain", "", $user->icon_image_path);
+                $disk = Storage::disk('s3');
+                $disk->delete($previous);
+            }
+            
+            $imagefile = $request->file('myfile');
+            
+                if($imagefile != "") 
+                {
+                    $now = date_format(Carbon::now(), 'YmdHis');
+                    $name = $imagefile->getClientOriginalName();
+                    $storePath="icon/".$now."_".$name;
+                    
+                    $image = Image::make($imagefile)
+                            ->resize(300, null, function ($constraint) 
+                        {
+                            $constraint->aspectRatio();
+                        }); 
+                    $image = $image->crop(300, 300);
+
+                    Storage::disk('s3')->put($storePath, (string) $image->encode(),'public');
+                    
+                    $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+                    $icon_image_path = $domain . $storePath;
+                } else {
+                    $icon_image_path = NULL;
+                }
+            
             $user->name = $request->name;
-            $user->icon_image_path = Storage::disk('s3')->url($path);
+            $user->icon_image_path = $icon_image_path;
             $user->save();
-    
+        
             return redirect('/');
         } else {
             return redirect('/');

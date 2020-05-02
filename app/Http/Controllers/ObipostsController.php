@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Obipost;
-
 use App\User;
-
-use Storage;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Carbon\Carbon;
 
 class ObipostsController extends Controller
 {
@@ -55,21 +54,34 @@ class ObipostsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'title' => 'required|max:191',
+            'title' => 'required|max:80',
             'content' => 'max:191',
-            'book_title' => 'max:191',
-            'book_author' => 'max:191',
+            'book_title' => 'max:80',
+            'book_author' => 'max:40',
+            'myfile' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $imagefile = $request->file('myfile');
         
-        // dd($request);
-        $image = $request->file('myfile');
-        // dd($image);
-        $path = Storage::disk('s3')->putFile('obipost', $image, 'public');
-        
-        // dd($path);
-        $obipost_image_path = Storage::disk('s3')->url($path);
-        
-        // dd($obipost_image_path);
+        if($imagefile != "") 
+        {
+            $now = date_format(Carbon::now(), 'YmdHis');
+            $name = $imagefile->getClientOriginalName();
+            $storePath="obipost/".$now."_".$name;
+            
+            $image = Image::make($imagefile)
+                    ->resize(1024, null, function ($constraint) 
+                    {
+                        $constraint->aspectRatio();
+                    });
+            
+            Storage::disk('s3')->put($storePath, (string) $image->encode(),'public');
+            
+            $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+            $obipost_image_path = $domain . $storePath;
+        } else {
+            $obipost_image_path = NULL;
+        }
 
         $request->user()->obiposts()->create([
             'title' => $request->title,
@@ -137,10 +149,11 @@ class ObipostsController extends Controller
         $obipost = Obipost::find($id);
         
         $this->validate($request,[
-            'title' => 'required|max:191',
+            'title' => 'required|max:80',
             'content' => 'max:191',
-            'book_title' => 'max:191',
-            'book_author' => 'max:191',
+            'book_title' => 'max:80',
+            'book_author' => 'max:40',
+            'myfile' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
         if(\Auth::id() === $obipost->user_id) {
@@ -152,19 +165,33 @@ class ObipostsController extends Controller
                 $disk->delete($previous);
             }
             
-            $image = $request->file('myfile');
-            // dd($image);
-            if ($image !== '') {
-                $path = Storage::disk('s3')->putFile('obipost', $image, 'public');
-                $obipost->obipost_image_path = Storage::disk('s3')->url($path);
+            $imagefile = $request->file('myfile');
+            
+            if($imagefile != "") 
+            {
+                $now = date_format(Carbon::now(), 'YmdHis');
+                $name = $imagefile->getClientOriginalName();
+                $storePath="obipost/".$now."_".$name;
+                
+                $image = Image::make($imagefile)
+                        ->resize(1024, null, function ($constraint) 
+                        {
+                            $constraint->aspectRatio();
+                        });
+                
+                Storage::disk('s3')->put($storePath, (string) $image->encode(),'public');
+                
+                $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+                $obipost_image_path = $domain . $storePath;
             } else {
-                $obipost->obipost_image_path = null;
+                $obipost_image_path = NULL;
             }
 
             $obipost->title = $request->title;
             $obipost->content = $request->content;
             $obipost->book_title = $request->book_title;
             $obipost->book_author = $request->book_author;
+            $obipost->obipost_image_path = $obipost_image_path;
             $obipost->save();
         
             return redirect('/');
