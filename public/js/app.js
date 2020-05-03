@@ -3,7 +3,7 @@
 window.addEventListener("DOMContentLoaded", function(){
     var count = null,
     lest = null,
-    max = 191,
+    max = 400,
     input_area = document.getElementById("textArea"),
     output_count = document.getElementById("textCount"),
     output_lest = document.getElementById("textLest"),

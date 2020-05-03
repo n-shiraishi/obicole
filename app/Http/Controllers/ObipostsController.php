@@ -54,10 +54,10 @@ class ObipostsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'title' => 'required|max:80',
-            'content' => 'max:191',
-            'book_title' => 'max:80',
-            'book_author' => 'max:40',
+            'title' => 'required|max:50',
+            'content' => 'required|max:400',
+            'book_title' => 'required|max:30',
+            'book_author' => 'required|max:20',
             'myfile' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -143,16 +143,13 @@ class ObipostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ini_set('post_max_size', '20M');
-        ini_set('upload_max_filesize', '20M');
-        
         $obipost = Obipost::find($id);
         
         $this->validate($request,[
-            'title' => 'required|max:80',
-            'content' => 'max:191',
-            'book_title' => 'max:80',
-            'book_author' => 'max:40',
+            'title' => 'required|max:50',
+            'content' => 'required|max:400',
+            'book_title' => 'required|max:30',
+            'book_author' => 'required|max:20',
             'myfile' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
