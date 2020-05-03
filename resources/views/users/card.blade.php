@@ -35,7 +35,9 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">閉じる</button>
-                {!! link_to_route('users.destroy', '削除する', ['id' => $user->id], ['class' => 'btn btn-danger btn-sm']) !!}
+                {!! Form::open( ['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
+                  {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
+                {!! Form::close() !!}
               </div>
             </div>
           </div>

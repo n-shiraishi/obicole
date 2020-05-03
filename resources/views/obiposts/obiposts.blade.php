@@ -5,7 +5,7 @@
                 <div class="row no-gutters">
                     <div class="col-sm-4">
                             @if($obipost->obipost_image_path === NULL)
-                                <img class="card-img" src="../images/iconmonstr-book-3-240.png" alt="アップロードした画像">
+                                <img class="card-img" src="{{ url('images/iconmonstr-book-17-240.png') }}" alt="アップロードした画像">
                             @else
                                 <img class="card-img" src="{{ $obipost->obipost_image_path }}" alt="アップロードした画像">
                             @endif

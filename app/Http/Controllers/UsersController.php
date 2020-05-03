@@ -143,6 +143,7 @@ class UsersController extends Controller
             {
                 $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
                 $previous = str_replace("$domain", "", $user->icon_image_path);
+                // dd($previous);
                 $disk = Storage::disk('s3');
                 $disk->delete($previous);
             }
@@ -153,17 +154,19 @@ class UsersController extends Controller
                 
                 foreach($obiposts as $obipost)
                 {
-                    if($obipost !== null)
+                    $obipost_image_path = $obipost->obipost_image_path;
+                    
+                    if($obipost_image_path !== null)
                     {
                         $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
                         $previous = str_replace("$domain", "", $obipost->obipost_image_path);
                         $disk = Storage::disk('s3');
                         $disk->delete($previous);
                     }
-                        
+                    $obipost->delete();
                 }
             }
-        
+            
             $user->delete();
 
             return redirect('/');

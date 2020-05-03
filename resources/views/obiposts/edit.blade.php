@@ -10,7 +10,9 @@
                         {!! Form::text('title', null,  ['class' => 'form-control', 'placeholder' => '煽り文をPick Up']) !!}
                     </div>
                     <div class="form-group mb-4">
-                        {!! Form::textarea('content', null,  ['class' => 'form-control', 'placeholder' => '感想など', 'rows' => '12']) !!}
+                        {!! Form::textarea('content', null,  ['class' => 'form-control', 'placeholder' => '感想など', 'rows' => '12', 'id' => 'textArea']) !!}
+                        <p class="text-right mr-2"><span id="textCount">0</span>/<span id="textLest">191</span></p>
+                        <p id="textAttention" style="display:none; color:red;">入力文字数が多すぎます。</p>
                     </div>
                     <div>
                         {!! Form::label('obipost_image_path', '写真をアップロード') !!}

@@ -11,7 +11,7 @@
             <div class="col-sm-4">
                 <div class="image_box">
                     @if($obipost->obipost_image_path === NULL)
-                        <img class="content_image" src="../images/iconmonstr-book-3-240.png" alt="アップロードされた画像">
+                        <img class="content_image" src="{{ url('images/iconmonstr-book-17-240.png') }}" alt="アップロードされた画像">
                     @else
                         <img class="content_image" src="{{ $obipost->obipost_image_path }}" alt="アップロードされた画像">
                     @endif
