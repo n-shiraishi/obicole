@@ -259,7 +259,7 @@ class ObipostsController extends Controller
     
     public function book_title($book_title)
     {
-        $obiposts = Obipost::where('book_title', $book_title)->get();
+        $obiposts = Obipost::where('book_title', $book_title)->paginate(20);
 
         $data = [
             'obiposts' => $obiposts,
@@ -271,7 +271,7 @@ class ObipostsController extends Controller
     
         public function book_author($book_author)
     {
-        $obiposts = Obipost::where('book_author', $book_author)->get();
+        $obiposts = Obipost::where('book_author', $book_author)->paginate(20);
 
         $data = [
             'obiposts' => $obiposts,
@@ -291,7 +291,7 @@ class ObipostsController extends Controller
                         ->orWhere('book_author','like', '%' . $keyword . '%')
                         ->orWhere('title','like', '%' . $keyword . '%')
                         ->orWhere('content','like', '%' . $keyword . '%')
-                        ->get();
+                        ->paginate(20);
                         
             return view('obiposts.search',[
                 'obiposts' => $obiposts,
