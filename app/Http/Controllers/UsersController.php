@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
     public function index ()
     {
-        $users = User::all();
+        $users = User::paginate(50);
         
         return view('users.index', [
             'users' => $users,
@@ -24,7 +24,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $obiposts = $user->obiposts()->paginate(10);
+        $obiposts = $user->obiposts()->paginate(20);
         
         $data = [
             'user' => $user,
@@ -39,7 +39,7 @@ class UsersController extends Controller
     public function favorites($id)
     {
         $user = User::find($id);
-        $favorites = $user->favorites()->paginate(20);
+        $favorites = $user->favorites()->paginate(50);
         
         $data = [
             'user' => $user,
@@ -55,7 +55,7 @@ class UsersController extends Controller
         public function wishes($id)
     {
         $user = User::find($id);
-        $wishes = $user->wishes()->paginate(20);
+        $wishes = $user->wishes()->paginate(50);
         
         $data = [
             'user' => $user,
@@ -91,8 +91,10 @@ class UsersController extends Controller
         ]);
         
         if(\Auth::id() === $user->id) {
+            
+            $imagefile = $request->file('myfile');
         
-            if($user->icon_image_path !== NULL) 
+            if($user->icon_image_path !== NULL && $imagefile != NULL) 
             {
                 $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
                 $previous = str_replace("$domain", "", $user->icon_image_path);
@@ -100,28 +102,28 @@ class UsersController extends Controller
                 $disk->delete($previous);
             }
             
-            $imagefile = $request->file('myfile');
-            
-                if($imagefile != "") 
-                {
-                    $now = date_format(Carbon::now(), 'YmdHis');
-                    $name = $imagefile->getClientOriginalName();
-                    $storePath="icon/".$now."_".$name;
-                    
-                    $image = Image::make($imagefile)
-                            ->resize(300, null, function ($constraint) 
-                        {
-                            $constraint->aspectRatio();
-                        }); 
-                    $image = $image->crop(300, 300);
+            if($imagefile != "") 
+            {
+                $now = date_format(Carbon::now(), 'YmdHis');
+                $name = $imagefile->getClientOriginalName();
+                $storePath="icon/".$now."_".$name;
+                
+                $image = Image::make($imagefile)
+                        ->resize(300, null, function ($constraint) 
+                    {
+                        $constraint->aspectRatio();
+                    }); 
+                $image = $image->crop(300, 300);
 
-                    Storage::disk('s3')->put($storePath, (string) $image->encode(),'public');
-                    
-                    $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
-                    $icon_image_path = $domain . $storePath;
-                } else {
-                    $icon_image_path = NULL;
-                }
+                Storage::disk('s3')->put($storePath, (string) $image->encode(),'public');
+                
+                $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
+                $icon_image_path = $domain . $storePath;
+            } elseif($user->icon_image_path != NULL) {
+                $icon_image_path = $user->icon_image_path;
+            } else {
+                $icon_image_path = NULL;
+            }
             
             $user->name = $request->name;
             $user->icon_image_path = $icon_image_path;

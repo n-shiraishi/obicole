@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container mt-4">
+    <div class="jumbotron jumbotron-fluid d-flex align-items-center">
+        <div class="container">
             <h1 class="text-center">{{ $obipost->title }}</h1>
         </div>
     </div>
@@ -11,7 +11,7 @@
             <div class="col-sm-4">
                 <div class="image_box">
                     @if($obipost->obipost_image_path === NULL)
-                        <img class="content_image" src="{{ url('images/iconmonstr-book-17-240.png') }}" alt="アップロードされた画像">
+                        <p class="obicolelogo">Obicole</p>
                     @else
                         <img class="content_image" src="{{ $obipost->obipost_image_path }}" alt="アップロードされた画像">
                     @endif

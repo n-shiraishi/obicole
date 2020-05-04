@@ -12,7 +12,7 @@ class TopController extends Controller
 {
     public function favorites_rank()
     {
-        $obiposts = Obipost::withCount('favorite_users')->orderBy('favorite_users_count', 'desc')->get();
+        $obiposts = Obipost::withCount('favorite_users')->orderBy('favorite_users_count', 'desc')->paginate(20);
         
         $data = [
             'obiposts' => $obiposts,
@@ -23,7 +23,7 @@ class TopController extends Controller
     
         public function wishes_rank()
     {
-        $obiposts = Obipost::withCount('wishing_users')->orderBy('wishing_users_count', 'desc')->get();
+        $obiposts = Obipost::withCount('wishing_users')->orderBy('wishing_users_count', 'desc')->pagenate(20);
         
         $data = [
             'obiposts' => $obiposts,

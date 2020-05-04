@@ -21,7 +21,7 @@ class ObipostsController extends Controller
         $data = [];
         
         $user = \Auth::user();
-        $obiposts = Obipost::orderBy('created_at','desc')->paginate(15);
+        $obiposts = Obipost::orderBy('created_at','desc')->paginate(20);
 
         $data = [
             'user' => $user,
@@ -153,17 +153,17 @@ class ObipostsController extends Controller
             'myfile' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
+        $imagefile = $request->file('myfile');
+        
         if(\Auth::id() === $obipost->user_id) {
         
-            if($obipost->obipost_image_path != NULL) {
+            if($obipost->obipost_image_path != NULL && $imagefile != NULL) {
                 $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
                 $previous = str_replace("$domain", "", $obipost->obipost_image_path);
                 $disk = Storage::disk('s3');
                 $disk->delete($previous);
             }
-            
-            $imagefile = $request->file('myfile');
-            
+
             if($imagefile != "") 
             {
                 $now = date_format(Carbon::now(), 'YmdHis');
@@ -171,7 +171,7 @@ class ObipostsController extends Controller
                 $storePath="obipost/".$now."_".$name;
                 
                 $image = Image::make($imagefile)
-                        ->resize(1024, null, function ($constraint) 
+                        ->resize(500, null, function ($constraint) 
                         {
                             $constraint->aspectRatio();
                         });
@@ -180,6 +180,8 @@ class ObipostsController extends Controller
                 
                 $domain='https://obicolebucket.s3.ap-northeast-1.amazonaws.com/';
                 $obipost_image_path = $domain . $storePath;
+            } elseif($obipost->obipost_image_path != NULL) {
+                $obipost_image_path = $obipost->obipost_image_path;
             } else {
                 $obipost_image_path = NULL;
             }
