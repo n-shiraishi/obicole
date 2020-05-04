@@ -292,14 +292,13 @@ class ObipostsController extends Controller
                         ->orWhere('title','like', '%' . $keyword . '%')
                         ->orWhere('content','like', '%' . $keyword . '%')
                         ->paginate(20);
-                        
+        } else {
+            $obiposts = Obipost::orderBy('created_at','desc')->paginate(20);
+        }
+        
             return view('obiposts.search',[
                 'obiposts' => $obiposts,
                 'keyword' => $keyword,
             ]);
-                
-        } else {
-            return back();
-        }
     }
 }
