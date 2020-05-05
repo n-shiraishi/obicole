@@ -43,6 +43,7 @@ footer {
 
 .content {
     min-height: 300px;
+    white-space: pre-wrap;
 }
 
 .content_image {

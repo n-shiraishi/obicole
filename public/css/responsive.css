@@ -8,12 +8,13 @@
         background-image: url(../images/john-VRQ7siT4U2U-unsplash.jpg);
         background-size: cover;
         background-position: center;
-        min-height: 150px;
+        min-height: 130px;
         margin-bottom: 15px;
     }
     
     .content {
         min-height: 10px;
+        white-space: pre-line;
     }
         
     .card-body h4 {
@@ -74,7 +75,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 150px;
+    min-height: 160px;
     max-height: 200px;
     }
     
