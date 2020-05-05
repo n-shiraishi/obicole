@@ -131,6 +131,16 @@ footer {
     color: #707070;
 }
 
+.nav-pills .pill-2 .nav-link:not(.active) {
+    background-color: #f0f0f0;
+    color: #b0b0b0;
+}
+
+.nav-pills .pill-2 .nav-link {
+    background-color: #f0f0f0;
+    color: #707070;
+}
+
 .page-item a {
     color: #3f3f3f;
 }

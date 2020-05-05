@@ -33,11 +33,11 @@
                     <div class="d-inline-flex p-2">
                         <h5 class="user_name">{!! link_to_route('users.show', $obipost->user->name, ['id' => $obipost->user->id]) !!}</h5>
                     </div>
-                    <div class="d-inline-flex ml-auto mr-3 p-2">
+                    <div class="d-inline-flex ml-auto mr-sm-3 p-2 timestamp">
                         <p class="text-right mb-0">| {{ $obipost->created_at }}</p>
                     </div>
                 </div>
-                <div class="mr-3">
+                <div class="mr-sm-3">
                     <p class="text-right">
                         <span class="badge badge-pill badge-warning mr-2"><i class="fas fa-bookmark"></i> {!! link_to_route('obiposts.wishing_users', $count_wishing_users, ['id' => $obipost->id], ['class' => 'text-reset text-decoration-none']) !!}</span>
                         <span class="badge badge-pill badge-danger"><i class="fas fa-heart"></i> {!! link_to_route('obiposts.favorite_users', $count_favorite_users, ['id' => $obipost->id], ['class' => 'text-reset text-decoration-none']) !!}</span>
@@ -55,7 +55,7 @@
                         @include('favorites.favorite_button')
                     </div>
                     @if(Auth::id() === $obipost->user->id) 
-                        <div class="d-inline-flex ml-auto p-2">{!! link_to_route('obiposts.edit', '記事を編集する', ['id' => $obipost->id], ['class' => 'btn btn-outline-success mr-1']) !!}</div>
+                        <div class="d-inline-flex ml-auto p-2">{!! link_to_route('obiposts.edit', '記事を編集する', ['id' => $obipost->id], ['class' => 'btn btn-outline-success mr-sm-1']) !!}</div>
                         {!! Form::model($obipost, ['route' => ['obiposts.destroy', $obipost->id], 'method' => 'delete']) !!}
                         <div class="d-inline-flex p-2">
                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">

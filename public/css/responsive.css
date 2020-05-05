@@ -1,6 +1,6 @@
 @media screen and (max-width:767px) {
     h1 { 
-        font-size: 15pt;
+        font-size: 12pt;
         word-wrap: break-word;
     }
     
@@ -8,7 +8,7 @@
         background-image: url(../images/john-VRQ7siT4U2U-unsplash.jpg);
         background-size: cover;
         background-position: center;
-        min-height: 130px;
+        min-height: 100px;
         margin-bottom: 15px;
     }
     
@@ -17,18 +17,18 @@
     }
         
     .card-body h4 {
-        font-size: 15pt;
+        font-size: 11pt;
     }    
     
     .user_name {
         margin: 0px;
         display: flex;
         align-items: center;
-        font-size: 14pt;
+        font-size: 12pt;
     }
     
     .user_name h5 {
-        font-size: 14pt;
+        font-size: 12pt;
     }
     
     .image_box {
@@ -59,7 +59,7 @@
     }
     
     .caption h5 {
-        font-size: 14pt;
+        font-size: 11pt;
         margin-bottom: 20px;
     }
 
@@ -74,11 +74,30 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 200px;
-    max-height: 250px;
+    min-height: 150px;
+    max-height: 200px;
+    }
+    
+    .obipost_content {
+    height: 35px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     }
 
     .search_button {
         margin-top: 5px;
+    }
+    
+    .timestamp {
+        font-size: 9pt;
+        margin: 0px;
+        padding-right: 0px;
+        text-align: right;
+    }
+    
+    .pill-2 a{
+        font-size: 10pt;
     }
 }
