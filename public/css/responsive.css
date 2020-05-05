@@ -1,6 +1,6 @@
 @media screen and (max-width:767px) {
     h1 { 
-        font-size: 12pt;
+        font-size: 13pt;
         word-wrap: break-word;
     }
     
@@ -8,7 +8,7 @@
         background-image: url(../images/john-VRQ7siT4U2U-unsplash.jpg);
         background-size: cover;
         background-position: center;
-        min-height: 100px;
+        min-height: 150px;
         margin-bottom: 15px;
     }
     
@@ -17,7 +17,7 @@
     }
         
     .card-body h4 {
-        font-size: 11pt;
+        font-size: 13pt;
     }    
     
     .user_name {
@@ -59,7 +59,7 @@
     }
     
     .caption h5 {
-        font-size: 11pt;
+        font-size: 13pt;
         margin-bottom: 20px;
     }
 
