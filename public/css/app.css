@@ -106,6 +106,7 @@ footer {
     letter-spacing: 0.1em;
     text-align: center;
     text-shadow: 1px 1px 2px silver;
+    margin-bottom: 0;
 }
 
 .obipost_content {

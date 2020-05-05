@@ -1,0 +1,84 @@
+@media screen and (max-width:767px) {
+    h1 { 
+        font-size: 15pt;
+        word-wrap: break-word;
+    }
+    
+    .jumbotron {
+        background-image: url(../images/john-VRQ7siT4U2U-unsplash.jpg);
+        background-size: cover;
+        background-position: center;
+        min-height: 130px;
+        margin-bottom: 15px;
+    }
+    
+    .content {
+        min-height: 10px;
+    }
+        
+    .card-body h4 {
+        font-size: 15pt;
+    }    
+    
+    .user_name {
+        margin: 0px;
+        display: flex;
+        align-items: center;
+        font-size: 14pt;
+    }
+    
+    .user_name h5 {
+        font-size: 14pt;
+    }
+    
+    .image_box {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    
+    .container-sm {
+        margin-left: 15px;
+    }
+    
+    .search_form {
+    background-image: url(../images/ergita-sela-3h5zbgge6g4-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    }
+    
+    .search_form .form-inline {
+        text-align: center;
+    }
+    
+    .caption h5 {
+        font-size: 14pt;
+        margin-bottom: 20px;
+    }
+
+    .navtabs-sm {
+        margin-top: 15px;
+    }
+    
+    .obipost_image {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 200px;
+    max-height: 250px;
+    }
+
+    .search_button {
+        margin-top: 5px;
+    }
+}

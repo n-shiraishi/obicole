@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container caption">
         @include('commons.search_form')
-            <h5 class="mb-4"><i class="fas fa-book"></i> "{{ $keyword }}"を含む記事</h5>
+            <h5 class="mb-sm-4"><i class="fas fa-book"></i> "{{ $keyword }}"を含む記事</h5>
         @if(count($obiposts) > 0)
             @include('obiposts.obiposts')
         @else
