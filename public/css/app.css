@@ -65,6 +65,13 @@ footer {
     height: auto;
 }
 
+.image_box_2 {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .search_form {
     background-image: url(../images/ergita-sela-3h5zbgge6g4-unsplash.jpg);
     background-size: cover;
@@ -149,4 +156,8 @@ footer {
 .page-item.active .page-link {
     background-color: #5f5f5f;
     border-color: #5f5f5f;
+}
+
+.book_table {
+    width: 150px;
 }

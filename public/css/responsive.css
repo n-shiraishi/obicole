@@ -101,4 +101,23 @@
     .pill-2 a{
         font-size: 10pt;
     }
+    
+    .book_table {
+        width: 83px;
+        font-size: 11pt;
+        vertical-align: middle;
+    }
+    
+    .book_table_caption {
+        font-size: 11pt;
+    }
+    
+    .book_image {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .google_link {
+        margin-bottom: 20px;
+    }
 }

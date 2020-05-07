@@ -20,6 +20,12 @@
                         {!! link_to_route('obiposts.book_title', '#' . $obipost->book_title, ['book_title' => $obipost->book_title], ['class' => 'text-muted']) !!}　
                         {!! link_to_route('obiposts.book_author', '#' . $obipost->book_author, ['book_author' => $obipost->book_author], ['class' => 'text-muted']) !!}
                     </p>
+                    
+                    <p class="text-center">
+                        {!! link_to_route('books.book_info', '作品情報', ['id' => $obipost->id], ['class' => 'btn btn-block btn-light mt-sm-4']) !!}　
+                    </p>
+                    
+                    
             </div>
             <div class="col-sm-8">
                 <div class="d-flex align-items-center">

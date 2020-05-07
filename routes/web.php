@@ -44,7 +44,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('wishing_users', 'ObipostsController@wishing_users')->name('obiposts.wishing_users');
         Route::get('book_title', 'ObipostsController@book_title')->name('obiposts.book_title');
         Route::get('book_author', 'ObipostsController@book_author')->name('obiposts.book_author');
-        
+        Route::get('book_info', 'BooksController@book_info')->name('books.book_info');
+
     });
     
     Route::resource('obiposts', 'ObipostsController');
