@@ -8,7 +8,7 @@
             @foreach ($items as $item)
                 <div class="row mb-3">
                     <div class="col-sm-3 text-center align-items-center">
-                        @if(array_key_exists('imageLinks', $item->volumeInfo))
+                        @if(isset($item->volumeInfo->imageLinks->thumbnail))
                             <img class="book_image" src="{{ $item->volumeInfo->imageLinks->thumbnail }}" width="85%" height="auto">
                         @else
                             <div class="image_box_2">
@@ -16,7 +16,7 @@
                             </div>
                         @endif
                         <div class="mt-sm-3 mb-sm-4 google_link">
-                            @if(array_key_exists('infoLink', $item->volumeInfo))
+                            @if(isset($item->volumeInfo->infoLink))
                             <a href="{{ $item->volumeInfo->infoLink }}" target="new" class="btn btn-light">Google Booksで見る</a>
                             @else
                             <p></p>
@@ -28,7 +28,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row" class="book_table">書籍名</th>
-                                    @if(array_key_exists('title', $item->volumeInfo))
+                                    @if(isset($item->volumeInfo->title))
                                     <td>{{ $item->volumeInfo->title }}</td>
                                     @else
                                     <td> - </td>
@@ -36,7 +36,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row" class="book_table">著者</th>
-                                    @if(array_key_exists('authors', $item->volumeInfo))
+                                    @if(isset($item->volumeInfo->authors))
                                     <td>{{ implode(',', $item->volumeInfo->authors) }}</td>
                                     @else
                                     <td> - </td>
@@ -44,7 +44,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row" class="book_table">発行日</th>
-                                    @if(array_key_exists('publishedDate', $item->volumeInfo))
+                                    @if(isset($item->volumeInfo->publishedDate))
                                     <td>{{ $item->volumeInfo->publishedDate }}</td>
                                     @else
                                     <td> - </td>
@@ -52,7 +52,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row" class="book_table">出版社</th>
-                                    @if(array_key_exists('publisher', $item->volumeInfo))
+                                    @if(isset($item->volumeInfo->publisher))
                                     <td>{{ $item->volumeInfo->publisher }}</td>
                                     @else
                                     <td> - </td>
@@ -60,7 +60,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row" class="book_table_caption">あらすじ</th>
-                                    @if(array_key_exists('description', $item->volumeInfo))
+                                    @if(isset($item->volumeInfo->description))
                                     <td>{{ $item->volumeInfo->description }}</td>
                                     @else
                                     <td> - </td>
