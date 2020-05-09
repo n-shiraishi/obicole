@@ -10,19 +10,19 @@
                             {!! Form::open(['route' => 'signup.post']) !!}
                                 <div class="form-group mt-4">
                                     {!! Form::label('name', 'ユーザ名') !!}
-                                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                                    {!! Form::text('name', old('name'), ['class' => 'form-control' ,'placeholder' => '20文字以内']) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('email', 'メールアドレス') !!}
-                                    {!! Form::email('email',old('email'), ['class' => 'form-control']) !!}
+                                    {!! Form::email('email',old('email'), ['class' => 'form-control' ,'placeholder' => '例）obicole@gmail.com']) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('password', 'パスワード') !!}
-                                    {!! Form::password('password', ['class' => 'form-control']) !!}
+                                    {!! Form::password('password', ['class' => 'form-control' ,'placeholder' => '6文字以上']) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('password_confirmation', 'パスワード（確認）') !!}
-                                    {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                                    {!! Form::password('password_confirmation', ['class' => 'form-control' ,'placeholder' => '確認のためもう一度入力してください']) !!}
                                 </div>
                                 {!! Form::submit('登録する', ['class' => 'btn btn-secondary mt-3 mb-4']) !!}
                             {!! Form::close() !!}
