@@ -18,3 +18,68 @@ window.addEventListener("DOMContentLoaded", function(){
         attention.style.display = ( length > max ) ? "block" : "none";
     }
 }, false);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // -----------------------
+  // 20文字以下の入力チェック
+  // -----------------------
+  var targets = document.getElementsByClassName('name');
+  for (var i=0 ; i<targets.length ; i++) {
+    targets[i].onchange = function () {
+      var alertelement = this.parentNode.getElementsByClassName('alertarea');
+      if( this.value.trim().length > 20 ) {
+        if( alertelement[0] ) { alertelement[0].innerHTML = "20文字以内で入力してください。"; }
+      }
+      else {
+        if( alertelement[0] ) { alertelement[0].innerHTML = ""; }
+      }
+    }
+  }
+  // -----------------------
+  // メールアドレスの入力チェック
+  // -----------------------
+  var targets = document.getElementsByClassName('mail');
+  for (var i=0 ; i<targets.length ; i++) {
+    targets[i].onchange = function () {
+      var alertelement = this.parentNode.getElementsByClassName('alertarea');
+      if ( !document.form1.email.value.match(/^[A-Za-z0-9]+[\w-]+@[\w\.-]+\.\w{2,}$/)) {
+        if( alertelement[0] ) { alertelement[0].innerHTML = "メールアドレスをご確認ください。"; }
+      }
+      else {
+        if( alertelement[0] ) { alertelement[0].innerHTML = ""; }
+      }
+    }
+  }
+  // -----------------------
+  // 6文字以上の入力チェック
+  // -----------------------
+  var targets = document.getElementsByClassName('password');
+  for (var i=0 ; i<targets.length ; i++) {
+    targets[i].onchange = function () {
+      var alertelement = this.parentNode.getElementsByClassName('alertarea');
+      if( this.value.trim().length < 6 ) {
+        if( alertelement[0] ) { alertelement[0].innerHTML = "6文字以上で入力してください。"; }
+      }
+      else {
+        if( alertelement[0] ) { alertelement[0].innerHTML = ""; }
+      }
+    }
+  }
+  // -----------------------
+  //  パスワード一致チェック
+  // -----------------------
+  var comparison = document.getElementsByClassName('password');
+  var targets = document.getElementsByClassName('confirmation');
+  for (var i=0 ; i<targets.length ; i++) {
+    targets[i].onchange = function () {
+      var alertelement = this.parentNode.getElementsByClassName('alertarea');
+      if( targets != comparison ) {
+        if( alertelement[0] ) { alertelement[0].innerHTML = "パスワードが一致していません。"; }
+      }
+      else {
+        if( alertelement[0] ) { alertelement[0].innerHTML = ""; }
+      }
+    }
+  }
+});
