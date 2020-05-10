@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'ユーザー表示画面 | Obicole')
+@section('description', '投稿された記事に対して気になるしたユーザーを確認できます。')
 
 @section('content')
     <div class="container mt-4 container-sm caption">

@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'メール送信画面 | Obicole')
+@section('description', 'パスワード再設定のためのメール送信ページです。')
 
 @section('content')
     <div class="container mt-4">

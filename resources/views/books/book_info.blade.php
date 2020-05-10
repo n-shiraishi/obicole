@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', '作品情報画面 | Obicole')
+@section('description', '投稿した本の帯に関連する作品についての情報ページです。')
 
 @section('content')
     <div class="container mt-sm-4">

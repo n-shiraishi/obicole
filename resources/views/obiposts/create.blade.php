@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', '記事投稿画面 | Obicole')
+@section('description', '新しい記事を投稿するページです。作品情報、感想、写真をアップロードする事で記事を共有できます。')
 
 @section('content')
     <div class="container mt-4">

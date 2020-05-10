@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'アカウント作成画面 | Obicole')
+@section('description', 'ユーザーアカウント作成ページです。')
 
 @section('content')
     <div class="container mt-4">

@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', '記事編集画面 | Obicole')
+@section('description', '投稿した記事を編集するページです。')
 
 @section('content')
     <div class="container mt-4">

@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', '記事詳細画面 | Obicole')
+@section('description', '本の帯について投稿された記事の詳細を表示するページです。')
 
 @section('content')
     <div class="jumbotron jumbotron-fluid d-flex align-items-center">

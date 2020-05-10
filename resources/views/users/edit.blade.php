@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'ユーザー編集画面 | Obicole')
+@section('description', 'ユーザーのプロフィールを編集するページです。')
 
 @section('content')
     <div class="container mt-4">

@@ -56,8 +56,3 @@ Route::group(['middleware' => ['auth']], function() {
     
     Route::resource('obiposts', 'ObipostsController');
 });
-
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');

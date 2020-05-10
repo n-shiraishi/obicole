@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', '検索結果一覧画面 | Obicole')
+@section('description', '検索されたワードを含む記事の一覧を表示するページです。')
 
 @section('content')
     <div class="container caption">

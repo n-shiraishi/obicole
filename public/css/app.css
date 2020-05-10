@@ -170,5 +170,8 @@ footer {
    color: #ff4747; 
    font-size: 10pt;
 }
-/* ▼入力チェック結果でエラーがない場合は非表示にする */
-.alertarea:empty { display: none; }
+
+.alertarea:empty {
+    display: none; 
+    
+}
