@@ -9,7 +9,9 @@
                 {!! Form::model( $obipost, ['route' => ['obiposts.update', $obipost->id], 'method' => 'put', 'files' => true]) !!}
                 
                     <div class="form-group">
-                        {!! Form::text('title', null,  ['class' => 'form-control', 'placeholder' => '煽り文をPick Up']) !!}
+                        {!! Form::text('title', null,  ['class' => 'form-control', 'placeholder' => '煽り文をPick Up', 'id' => 'titleArea']) !!}
+                        <p class="text-right mr-2"><span id="titleCount">0</span>/<span id="titleLest">50</span></p>
+                        <p id="titleAttention" style="display:none; color:red;">入力文字数が多すぎます。</p>
                     </div>
                     <div class="form-group mb-4">
                         {!! Form::textarea('content', null,  ['class' => 'form-control', 'placeholder' => '感想など', 'rows' => '12', 'id' => 'textArea']) !!}

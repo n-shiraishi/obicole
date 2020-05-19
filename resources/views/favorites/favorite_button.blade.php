@@ -5,7 +5,7 @@
         {!! Form::close() !!}
     @else
         {!! Form::open(['route' => ['favorites.favorite', $obipost->id]]) !!}
-            {!! Form::button('<i class="far fa-heart"></i>　いいね', ['class' => "btn btn-outline-danger", 'type' => 'submit']) !!}
+            {!! Form::button('<i class="far fa-heart"></i>　いいね', ['class' => "btn btn-outline-danger", 'type' => 'badge']) !!}
         {!! Form::close() !!}
     @endif
 @endif

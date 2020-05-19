@@ -24,7 +24,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $obiposts = $user->obiposts()->paginate(20);
+        $obiposts = $user->obiposts()->orderBy('created_at', 'desc')->paginate(20);
         
         $data = [
             'user' => $user,
@@ -129,9 +129,9 @@ class UsersController extends Controller
             $user->icon_image_path = $icon_image_path;
             $user->save();
         
-            return redirect('/');
+            return redirect()->action('UsersController@show', ['id' => $id]);
         } else {
-            return redirect('/');
+            return redirect()->action('UsersController@show', ['id' => $id]);
         }
     }
     

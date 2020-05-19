@@ -47,8 +47,8 @@
                 </div>
                 <div class="mr-sm-3">
                     <p class="text-right">
-                        <span class="badge badge-pill badge-warning mr-2"><i class="fas fa-bookmark"></i> {!! link_to_route('obiposts.wishing_users', $count_wishing_users, ['id' => $obipost->id], ['class' => 'text-reset text-decoration-none']) !!}</span>
-                        <span class="badge badge-pill badge-danger"><i class="fas fa-heart"></i> {!! link_to_route('obiposts.favorite_users', $count_favorite_users, ['id' => $obipost->id], ['class' => 'text-reset text-decoration-none']) !!}</span>
+                        <a href="{{ route('obiposts.wishing_users', ['id' => $obipost->id]) }}" class="badge badge-pill badge-warning mr-2"><i class="fas fa-bookmark"></i> {{ $count_wishing_users }}</a>
+                        <a href="{{ route('obiposts.favorite_users', ['id' => $obipost->id]) }}" class="badge badge-pill badge-danger"><i class="fas fa-heart"></i> {{ $count_favorite_users }}</a>
                     </p>
                 </div>
                 

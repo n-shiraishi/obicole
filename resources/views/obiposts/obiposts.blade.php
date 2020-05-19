@@ -18,8 +18,8 @@
                             </p>
                             <p class="card-text obipost_content mb-1">{{ $obipost->content }}</p>
                             <p class="card-text text-right">
-                                <span class="badge  badge-pill badge-warning ml-auto mr-2"><i class="fas fa-bookmark"></i> {{ $obipost->wishing_users()->count() }}</span>
-                                <span class="badge  badge-pill badge-danger"><i class="fas fa-heart"></i> {{ $obipost->favorite_users()->count() }}</span>
+                                <a href="{{ route('obiposts.wishing_users', ['id' => $obipost->id]) }}" class="badge  badge-pill badge-warning ml-auto mr-2"><i class="fas fa-bookmark"></i> {{ $obipost->wishing_users()->count() }}</a>
+                                <a href="{{ route('obiposts.favorite_users', ['id' => $obipost->id]) }}" class="badge badge-pill badge-danger"><i class="fas fa-heart"></i> {{ $obipost->favorite_users()->count() }}</a>
                             </p>
                         </div>
                     </div>

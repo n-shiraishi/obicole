@@ -91,7 +91,7 @@ class ObipostsController extends Controller
             'obipost_image_path' => $obipost_image_path,
         ]);
         
-        return redirect('/');
+        return redirect()->action('UsersController@show', ['id' => $request->user()->id ]);
     }
 
     /**
@@ -193,9 +193,9 @@ class ObipostsController extends Controller
             $obipost->obipost_image_path = $obipost_image_path;
             $obipost->save();
         
-            return redirect('/');
+            return redirect()->action('ObipostsController@show', ['id' => $id]);
         } else {
-            return redirect('/');
+            return redirect()->action('ObipostsController@show', ['id' => $id]);
         }
     }
 
@@ -208,6 +208,7 @@ class ObipostsController extends Controller
     public function destroy($id)
     {
         $obipost = Obipost::find($id);
+        $user = $obipost->user_id;
         
         if(\Auth::id() === $obipost->user_id) {
         
@@ -221,9 +222,9 @@ class ObipostsController extends Controller
         
             $obipost->delete();
 
-            return redirect('/');
+            return redirect()->action('UsersController@show', ['id' => $user ]);
         } else {
-            return redirect('/');
+            return redirect()->action('UsersController@show', ['id' => $user ]);
         }
     }
     
