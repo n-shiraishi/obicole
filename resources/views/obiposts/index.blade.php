@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-@section('description', '本の帯を共有しよう。作品情報、感想、写真をアップロードする事で記事を共有できます。')
+@section('description', 'オビコレ ー 本の帯を共有しよう。作品情報、感想、写真をアップロードする事で記事を共有できます。')
 
 @section('content')
     <div class="container caption">

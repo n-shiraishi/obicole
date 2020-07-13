@@ -1,5 +1,5 @@
-# Obicole(アプリ名)
-[Obicole](http://obicole.herokuapp.com/)  
+# Obicole(オビコレ)
+[Obicole](https://www.obicole.com)  
 書籍の帯について、画像と共に記事を投稿できるサービスです。
 本屋さんでたまたま見かけた帯のデザインやワードに惹かれて購入を決めたという経験がありませんか？
 思わず手にとってしまった帯、心惹かれた帯を共有して新しい出会いのきっかけを。
@@ -7,7 +7,7 @@
 ## 努力した部分
 - ユーザー登録機能
 - 撮影した画像をアップロード(アップロード先にS3を採用)
-- 書籍検索ができる(Google books APIを使用)
+- 書籍検索(Google books APIを使用)
 - ランキング表示
 - いいね機能
 - スマホ表示対応
@@ -36,5 +36,7 @@
 - [league/flysystem-aws-s3-v3](https://github.com/thephpleague/flysystem-aws-s3-v3)
 - [Google books API](https://developers.google.com/books/docs/v1/using)
 
-## その他
+## 今後、実装していきたい機能
 - 作品名、著者名入力時のオートコンプリート機能
+- 非同期通信でのいいね機能
+- 記事に対するコメント機能
